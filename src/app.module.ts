@@ -11,7 +11,6 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
-import { CourseModule } from './course/course.module';
 import { CategoryModule } from './category/category.module';
 import { UserDetailModule } from './user-detail/user-detail.module';
 import { BatchModule } from './batch/batch.module';
