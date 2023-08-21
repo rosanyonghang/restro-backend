@@ -30,6 +30,7 @@ import { RoleModule } from './role/role.module';
 import { AuthorityModule } from './authority/authority.module';
 import { KitchenActivityModule } from './kitchen-activity/kitchen-activity.module';
 import * as Joi from '@hapi/joi';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import * as Joi from '@hapi/joi';
         JWT_SECRET: Joi.string().required(),
       }),
     }),
+    AuthenticationModule,
     UserModule,
     CategoryModule,
     UserDetailModule,

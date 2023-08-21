@@ -36,7 +36,7 @@ export class UserController {
     private readonly commandBus: CommandBus,
   ) {}
 
-  @UseGuards(TokenGuard)
+  // @UseGuards(TokenGuard)
   @UseFilters(new DuplicateUserExceptionFilter())
   @UseFilters(new CreateUserExceptionFilter())
   @Post('/user')

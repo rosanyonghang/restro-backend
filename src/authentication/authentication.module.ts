@@ -10,6 +10,8 @@ import { TokenStorageProvider } from './providers/token-storage.provider';
 import { DatabaseStrategy } from './passport/strategy/database.strategy';
 import { CoreModule } from '../core/core.module';
 import { JwtStorage } from './storage/jwt.storage';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -24,8 +26,9 @@ import { JwtStorage } from './storage/jwt.storage';
     TokenStorageProvider,
     BcryptService,
     JwtStorage,
+    JwtService,
   ],
   controllers: [AuthenticationController],
-  exports: [BcryptService, JwtStorage],
+  exports: [BcryptService, JwtStorage, JwtService],
 })
 export class AuthenticationModule {}

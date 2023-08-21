@@ -36,6 +36,7 @@ export class JwtStorage implements TokenStorage {
         sub: user.id,
       } as TokenBody,
       {
+        secret: process.env.JWT_SECRET ?? 'restrobytessecret2023',
         expiresIn: JwtStorage.TOKEN_EXPIRY,
       },
     );
