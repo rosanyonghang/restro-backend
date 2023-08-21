@@ -1,5 +1,6 @@
 import {
   Column,
+  Entity,
   CreateDateColumn,
   DeleteDateColumn,
   OneToMany,
@@ -8,6 +9,7 @@ import {
 } from 'typeorm';
 import { Faq } from '../../faq/entities/faq.entity';
 
+@Entity()
 export class FaqCategory {
   @PrimaryGeneratedColumn()
   id: number;

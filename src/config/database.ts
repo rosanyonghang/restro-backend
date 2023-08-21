@@ -20,6 +20,5 @@ export const dbconfig = {
   //   max: (process.env.DB_CONNECTION_POOL_MAX && parseInt(process.env.DB_CONNECTION_POOL_MAX, 10)) || 5,
   // },
 } as TypeOrmModuleOptions;
-console.log(dbconfig)
 export const DATABASE_URL = process.env.DATABASE_URL;
 export default dbconfig;
