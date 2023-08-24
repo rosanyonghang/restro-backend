@@ -28,7 +28,6 @@ import { FinancialRecordModule } from './financial-record/financial-record.modul
 import { OrderModule } from './order/order.module';
 import { RoleModule } from './role/role.module';
 import { AuthorityModule } from './authority/authority.module';
-import { KitchenActivityModule } from './kitchen-activity/kitchen-activity.module';
 import * as Joi from '@hapi/joi';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ProductModule } from './product/product.module';
