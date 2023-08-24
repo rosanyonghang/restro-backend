@@ -16,6 +16,18 @@ export class Item {
   @Column()
   name: string;
 
+  @Column()
+  initialStock: number;
+
+  @Column()
+  sku: number;
+
+  @Column()
+  itemImage: string;
+
+  @Column()
+  metrics: string;
+
   // Define the type of the item: 'food', 'ingredient', 'derived'
   @Column({ type: 'enum', enum: ['food', 'ingredient', 'derived'] })
   type: 'food' | 'ingredient' | 'derived';
