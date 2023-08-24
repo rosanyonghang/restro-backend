@@ -25,7 +25,10 @@ export class JwtStrategy extends Strategy {
     }
 
     try {
+      console.log('test');
+
       const user: User = await this.tokenStorage.validateToken(token);
+
       // @ts-ignore
       this.success(user);
     } catch {

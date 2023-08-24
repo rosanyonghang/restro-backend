@@ -12,17 +12,12 @@ import {
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CoreEntity } from './entities/base.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user/entities/user.entity';
-import { JwtService } from '@nestjs/jwt';
 import { TokenGuard } from 'src/authentication/http/token.guard';
 
 export abstract class BaseController<T extends CoreEntity> {
   protected constructor(
     protected readonly repository: Repository<T>,
-    @InjectRepository(User)
-    protected readonly userRepository: Repository<User>,
-    private readonly jwtService: JwtService,
   ) {}
 
   @Get()
@@ -66,11 +61,5 @@ export abstract class BaseController<T extends CoreEntity> {
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<void> {
     await this.repository.delete(id);
-  }
-
-
-  private getUserIdFromToken(token: string): number {
-    const decoded = this.jwtService.decode(token) as any;
-    return decoded.userId; // Adjust according to your JWT structure
   }
 }

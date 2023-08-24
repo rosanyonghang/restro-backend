@@ -4,8 +4,10 @@ import { Category } from './entities/category.entity';
 import { BaseController } from '../base/base.controller';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ApiBasicAuth } from '@nestjs/swagger';
 
 @Controller('category')
+@ApiBasicAuth()
 export class CategoryController extends BaseController<Category> {
   constructor(
     @InjectRepository(Category)
