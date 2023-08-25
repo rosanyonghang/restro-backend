@@ -1,65 +1,48 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Put,
-  UseGuards,
-  Req,
-} from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Body, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { CoreEntity } from './entities/base.entity';
-import { User } from '../user/entities/user.entity';
 import { TokenGuard } from 'src/authentication/http/token.guard';
+import { ApiResponse } from '@nestjs/swagger';
+import { IBaseService } from './IBaseService.service';
 
-export abstract class BaseController<T extends CoreEntity> {
-  protected constructor(
-    protected readonly repository: Repository<T>,
-  ) {}
+export class BaseController<T extends CoreEntity> {
+  constructor(private readonly IBaseService: IBaseService<T>) {}
 
   @Get()
+  @ApiResponse({ status: 200, description: 'Ok' })
   async findAll(): Promise<T[]> {
-    return this.repository.find();
+    return this.IBaseService.getAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<T> {
-    return this.repository.findOne(id as any);
+  @ApiResponse({ status: 200, description: 'Entity retrieved successfully.' })
+  @ApiResponse({ status: 404, description: 'Entity does not exist' })
+  async findById(@Param('id') id: number): Promise<T> {
+    return this.IBaseService.get(id);
   }
 
   @Post()
   @UseGuards(TokenGuard)
-  async create(@Body() entity: T, @Req() request): Promise<T> {
-    const user = request.user as User; // This should contain the authenticated user's info from TokenGuard
-
-    return this.repository.save({
-      ...entity,
-      createdBy: user.id,
-      updatedBy: user.id,
-    });
-  }
-
-  @Put(':id')
-  @UseGuards(TokenGuard)
-  async update(
-    @Param('id') id: number,
-    @Body() entity: T,
-    @Req() request,
-  ): Promise<T> {
-    const user = request.user as User; // Assuming 'User' is the user type
-
-    await this.repository.update(id, {
-      ...entity,
-      updatedBy: user.id,
-    } as any);
-    return this.repository.findOne(id as any);
+  @ApiResponse({
+    status: 201,
+    description: 'The record has been successfully created.',
+  })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  async create(@Body() entity: T): Promise<number> {
+    return this.IBaseService.create(entity);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: number): Promise<void> {
-    await this.repository.delete(id);
+  @ApiResponse({ status: 200, description: 'Entity deleted successfully.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  async delete(@Param('id') id: number) {
+    this.IBaseService.delete(id);
+  }
+
+  @Put()
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @ApiResponse({ status: 200, description: 'Entity deleted successfully.' })
+  async update(@Body() entity: T): Promise<T> {
+    return this.IBaseService.update(entity);
   }
 }

@@ -7,9 +7,10 @@ import {
   OneToMany,
 } from 'typeorm';
 import { FinanceRecord } from '../../financial-record/entities/financial-record.entity';
+import { CoreEntity } from '../../base/entities/base.entity';
 
 @Entity()
-export class Item {
+export class Item extends CoreEntity{
   @PrimaryGeneratedColumn()
   id: number;
 

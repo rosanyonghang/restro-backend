@@ -2,13 +2,12 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  Column,
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 
-export abstract class CoreEntity {
+export class CoreEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
