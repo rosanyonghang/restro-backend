@@ -28,9 +28,19 @@ import { FinancialRecordModule } from './financial-record/financial-record.modul
 import { OrderModule } from './order/order.module';
 import { RoleModule } from './role/role.module';
 import { AuthorityModule } from './authority/authority.module';
-import { KitchenActivityModule } from './kitchen-activity/kitchen-activity.module';
 import * as Joi from '@hapi/joi';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { ProductModule } from './product/product.module';
+import { ProductAssociationModule } from './product-association/product-association.module';
+import { ProductVariantModule } from './product-variant/product-variant.module';
+import { ProductAttributeModule } from './product-attribute/product-attribute.module';
+import { ProductSpecificationModule } from './product-specification/product-specification.module';
+import { OrganizationModule } from './organization/organization.module';
+import { DefaultSettingModule } from './default-setting/default-setting.module';
+import { DiscountModule } from './discount/discount.module';
+import { FeaturedProductModule } from './featured-product/featured-product.module';
+import { FactoryActivityModule } from './factory-activity/factory-activity.module';
+import { OrderLogModule } from './order-log/order-log.module';
 
 @Module({
   imports: [
@@ -74,7 +84,17 @@ import { AuthenticationModule } from './authentication/authentication.module';
     OrderModule,
     RoleModule,
     AuthorityModule,
-    KitchenActivityModule,
+    ProductModule,
+    ProductAssociationModule,
+    ProductVariantModule,
+    ProductAttributeModule,
+    ProductSpecificationModule,
+    OrganizationModule,
+    DefaultSettingModule,
+    DiscountModule,
+    FeaturedProductModule,
+    FactoryActivityModule,
+    OrderLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

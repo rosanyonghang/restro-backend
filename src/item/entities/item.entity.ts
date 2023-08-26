@@ -7,14 +7,27 @@ import {
   OneToMany,
 } from 'typeorm';
 import { FinanceRecord } from '../../financial-record/entities/financial-record.entity';
+import { CoreEntity } from '../../base/entities/base.entity';
 
 @Entity()
-export class Item {
+export class Item extends CoreEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
+
+  @Column()
+  initialStock: number;
+
+  @Column()
+  sku: number;
+
+  @Column()
+  itemImage: string;
+
+  @Column()
+  metrics: string;
 
   // Define the type of the item: 'food', 'ingredient', 'derived'
   @Column({ type: 'enum', enum: ['food', 'ingredient', 'derived'] })
