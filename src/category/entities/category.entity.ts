@@ -1,4 +1,4 @@
-import { Entity, Column, OneToOne } from 'typeorm';
+import { Entity, Column, ManyToOne } from 'typeorm';
 import { CoreEntity } from '../../base/entities/base.entity';
 
 @Entity()
@@ -6,6 +6,12 @@ export class Category extends CoreEntity {
   @Column()
   name: string;
 
-  @OneToOne(() => Category, (category) => category.parent)
-  parent: string;
+  @Column({ default: '' })
+  ref: string;
+
+  @Column({ default: null, nullable: true })
+  image?: string;
+
+  @ManyToOne(() => Category, (category) => category.parent, { nullable: true })
+  parent?: string;
 }

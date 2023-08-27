@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 
 export class BaseService<T extends CoreEntity> implements IBaseService<T> {
   constructor(private readonly genericRepository: Repository<T>) {}
+
   create(entity: T): Promise<number> {
     try {
       return new Promise<number>((resolve, reject) => {
@@ -28,7 +29,10 @@ export class BaseService<T extends CoreEntity> implements IBaseService<T> {
 
   get(id: any): Promise<T> {
     try {
-      return this.genericRepository.findOne(id);
+      return this.genericRepository
+        .createQueryBuilder('module')
+        .where('id = :id', { id: +id })
+        .getOne();
     } catch (error) {
       throw new BadGatewayException(error);
     }
@@ -42,25 +46,26 @@ export class BaseService<T extends CoreEntity> implements IBaseService<T> {
     }
   }
 
-  update(entity: any): Promise<T> {
+  // update(entity: any): Promise<T> {
+  update(entity: any): any {
     try {
-      return new Promise<any>((resolve, reject) => {
-        this.genericRepository
-          .findOne(entity.id)
-          .then((responseGet) => {
-            try {
-              if (responseGet == null) reject('Not existing');
-              const retrievedEntity: any = responseGet as any;
-              this.genericRepository
-                .save(retrievedEntity)
-                .then((response) => resolve(response))
-                .catch((err) => reject(err));
-            } catch (e) {
-              reject(e);
-            }
-          })
-          .catch((err) => reject(err));
-      });
+      return this.genericRepository.update({ id: entity.id }, { ...entity });
+      // .findOne({
+      //   where: { id: entity.id },
+      // })
+      // .then((responseGet) => {
+      //   try {
+      //     if (responseGet == null) reject('Not existing');
+      //     const retrievedEntity: any = responseGet as any;
+      //     this.genericRepository
+      //       .save({ ...retrievedEntity })
+      //       .then((response) => resolve(response))
+      //       .catch((err) => reject(err));
+      //   } catch (e) {
+      //     reject(e);
+      //   }
+      // })
+      // .catch((err) => reject(err));
     } catch (error) {
       throw new BadGatewayException(error);
     }

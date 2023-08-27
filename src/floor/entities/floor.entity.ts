@@ -1,18 +1,18 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { CoreEntity } from '../../base/entities/base.entity';
-import { Table } from '../../table/entities/table.entity';
+import {FloorTable} from '../../table/entities/table.entity';
 
 @Entity()
-export class FloorEntity extends CoreEntity {
+export class Floor extends CoreEntity {
   @Column()
   title: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   image?: string;
 
   @Column()
   description: string;
 
-  @OneToMany(() => Table, (table) => table.floor)
-  tables: Table[];
+  @OneToMany(() => FloorTable, (table) => table.floor)
+  tables: FloorTable[];
 }

@@ -39,10 +39,10 @@ export class BaseController<T extends CoreEntity> {
     this.IBaseService.delete(id);
   }
 
-  @Put()
+  @Put(':id')
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiResponse({ status: 200, description: 'Entity deleted successfully.' })
-  async update(@Body() entity: T): Promise<T> {
-    return this.IBaseService.update(entity);
+  @ApiResponse({ status: 200, description: 'Entity updated successfully.' })
+  async update(@Param('id') id: number, @Body() entity: T): Promise<T> {
+    return this.IBaseService.update({ ...entity, id: +id });
   }
 }

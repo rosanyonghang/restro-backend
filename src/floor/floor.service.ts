@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateFloorDto } from './dto/create-floor.dto';
-import { UpdateFloorDto } from './dto/update-floor.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Floor } from './entities/floor.entity';
+import { Repository } from 'typeorm';
+import { BaseService } from '../base/base.service';
 
 @Injectable()
-export class FloorService {
-  create(createFloorDto: CreateFloorDto) {
-    return 'This action adds a new floor';
-  }
-
-  findAll() {
-    return `This action returns all floor`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} floor`;
-  }
-
-  update(id: number, updateFloorDto: UpdateFloorDto) {
-    return `This action updates a #${id} floor`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} floor`;
+export class FloorService extends BaseService<Floor> {
+  constructor(
+    @InjectRepository(Floor)
+    private readonly floorRepository: Repository<Floor>,
+  ) {
+    super(floorRepository);
   }
 }

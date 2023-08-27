@@ -9,10 +9,12 @@ export const dbconfig = {
   port:
     (process.env.DATABASE_PORT && parseInt(process.env.DATABASE_PORT, 10)) ||
     3306,
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
   database: process.env.DATABASE_NAME,
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
-  synchronize: process.env.DATABASE_SCHEMA_SYNC === 'true',
+  // synchronize: process.env.DATABASE_SCHEMA_SYNC === 'true',
+  synchronize: true,
   autoLoadEntities: true,
   bigNumberStrings: false,
   // logging: process.env.TYPEORM_QUERY_LOGGING === 'true',

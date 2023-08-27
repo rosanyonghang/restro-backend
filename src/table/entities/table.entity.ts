@@ -1,18 +1,19 @@
 import { CoreEntity } from '../../base/entities/base.entity';
-import { Column, ManyToOne } from 'typeorm';
-import { FloorEntity } from '../../floor/entities/floor.entity';
+import {Column, Entity, ManyToOne} from 'typeorm';
+import { Floor } from '../../floor/entities/floor.entity';
 
-export class Table extends CoreEntity {
+
+@Entity()
+export class FloorTable extends CoreEntity {
   @Column()
   title: string;
 
   @Column()
   description: string;
 
-
-  @Column({nullable: true})
+  @Column({ nullable: true })
   image?: string;
 
-  @ManyToOne(() => FloorEntity, (floor) => floor.tables)
-  floor: FloorEntity;
+  @ManyToOne(() => Floor, (floor) => floor.tables, { nullable: true })
+  floor?: Floor;
 }
