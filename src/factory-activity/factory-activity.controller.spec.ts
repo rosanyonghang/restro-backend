@@ -11,7 +11,9 @@ describe('FactoryActivityController', () => {
       providers: [FactoryActivityService],
     }).compile();
 
-    controller = module.get<FactoryActivityController>(FactoryActivityController);
+    controller = module.get<FactoryActivityController>(
+      FactoryActivityController,
+    );
   });
 
   it('should be defined', () => {

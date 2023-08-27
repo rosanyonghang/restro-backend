@@ -11,7 +11,9 @@ describe('ProductAssociationController', () => {
       providers: [ProductAssociationService],
     }).compile();
 
-    controller = module.get<ProductAssociationController>(ProductAssociationController);
+    controller = module.get<ProductAssociationController>(
+      ProductAssociationController,
+    );
   });
 
   it('should be defined', () => {

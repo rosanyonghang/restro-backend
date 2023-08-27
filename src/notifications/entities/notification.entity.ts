@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 import { CoreEntity } from '../../base/entities/base.entity';
+import { User } from '../../user/entities/user.entity';
 @Entity()
 export class Notification extends CoreEntity {
   @Column()
@@ -22,7 +23,7 @@ export class Notification extends CoreEntity {
   @Column()
   image: string | null;
 
-  @Column()
-  receivers: string[];
+  @ManyToMany(() => User)
+  @JoinTable()
+  receivers: User[];
 }
-

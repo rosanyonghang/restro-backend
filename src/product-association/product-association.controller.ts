@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProductAssociationService } from './product-association.service';
 import { CreateProductAssociationDto } from './dto/create-product-association.dto';
 import { UpdateProductAssociationDto } from './dto/update-product-association.dto';
 
 @Controller('product-association')
 export class ProductAssociationController {
-  constructor(private readonly productAssociationService: ProductAssociationService) {}
+  constructor(
+    private readonly productAssociationService: ProductAssociationService,
+  ) {}
 
   @Post()
   create(@Body() createProductAssociationDto: CreateProductAssociationDto) {
@@ -23,8 +33,14 @@ export class ProductAssociationController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductAssociationDto: UpdateProductAssociationDto) {
-    return this.productAssociationService.update(+id, updateProductAssociationDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateProductAssociationDto: UpdateProductAssociationDto,
+  ) {
+    return this.productAssociationService.update(
+      +id,
+      updateProductAssociationDto,
+    );
   }
 
   @Delete(':id')

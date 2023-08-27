@@ -16,7 +16,10 @@ export class ProductSpecificationService {
     return `This action returns a #${id} productSpecification`;
   }
 
-  update(id: number, updateProductSpecificationDto: UpdateProductSpecificationDto) {
+  update(
+    id: number,
+    updateProductSpecificationDto: UpdateProductSpecificationDto,
+  ) {
     return `This action updates a #${id} productSpecification`;
   }
 

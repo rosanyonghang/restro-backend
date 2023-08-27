@@ -1,1 +1,8 @@
-export class ItemBatch {}
+import { Column, Entity } from 'typeorm';
+import { CoreEntity } from '../../base/entities/base.entity';
+
+@Entity()
+export class ItemBatch extends CoreEntity {
+  @Column()
+  name: string;
+}

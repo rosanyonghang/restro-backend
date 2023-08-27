@@ -13,7 +13,6 @@ import { ConfigModule } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 import { CategoryModule } from './category/category.module';
 import { UserDetailModule } from './user-detail/user-detail.module';
-import { BatchModule } from './batch/batch.module';
 import { FaqModule } from './faq/faq.module';
 import { FaqCategoryModule } from './faq-category/faq-category.module';
 import { FloorModule } from './floor/floor.module';
@@ -42,7 +41,8 @@ import { FeaturedProductModule } from './featured-product/featured-product.modul
 import { FactoryActivityModule } from './factory-activity/factory-activity.module';
 import { OrderLogModule } from './order-log/order-log.module';
 import { FileModule } from './file/file.module';
-import {NotificationsModule} from "./notifications/notifications.module";
+import { NotificationsModule } from './notifications/notifications.module';
+import { RecipeItemModule } from './recipe-item/recipe-item.module';
 
 @Module({
   imports: [
@@ -71,7 +71,6 @@ import {NotificationsModule} from "./notifications/notifications.module";
     UserModule,
     CategoryModule,
     UserDetailModule,
-    BatchModule,
     FaqModule,
     FaqCategoryModule,
     FloorModule,
@@ -99,6 +98,7 @@ import {NotificationsModule} from "./notifications/notifications.module";
     FactoryActivityModule,
     OrderLogModule,
     FileModule,
+    RecipeItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],

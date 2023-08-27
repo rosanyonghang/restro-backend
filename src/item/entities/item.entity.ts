@@ -10,7 +10,7 @@ import { FinanceRecord } from '../../financial-record/entities/financial-record.
 import { CoreEntity } from '../../base/entities/base.entity';
 
 @Entity()
-export class Item extends CoreEntity{
+export class Item extends CoreEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
