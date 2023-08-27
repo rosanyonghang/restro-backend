@@ -8,12 +8,13 @@ import {
 } from 'typeorm';
 import { Item } from '../../item/entities/item.entity';
 import { User } from '../../user/entities/user.entity';
+import { CoreEntity } from '../../base/entities/base.entity';
+import { Product } from '../../product/entities/product.entity';
+import { Account } from '../../account/entities/account.entity';
+import { Employee } from '../../employee/entities/employee.entity';
 
 @Entity()
-export class FinanceRecord {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class FinanceRecord extends CoreEntity {
   @Column()
   description: string;
 
@@ -23,6 +24,12 @@ export class FinanceRecord {
   @Column({ type: 'enum', enum: ['purchase', 'sale', 'salary'] })
   type: 'purchase' | 'sale' | 'salary';
 
+  @ManyToOne(() => Account, (account) => account.transactions)
+  account: Account;
+
+  @ManyToOne(() => Employee, (employee) => employee.transactions)
+  employee: Employee;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user?: User;
@@ -31,5 +38,7 @@ export class FinanceRecord {
   @JoinColumn({ name: 'item_id' })
   item?: Item;
 
-  // ... other properties or relationships ...
+  @ManyToOne(() => Product)
+  @JoinColumn({ name: 'product_id' })
+  product?: Item;
 }

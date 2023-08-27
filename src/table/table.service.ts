@@ -7,7 +7,8 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class TableService extends BaseService<FloorTable> {
   constructor(
-      @InjectRepository(FloorTable) private readonly tableRepository: Repository<FloorTable>,
+    @InjectRepository(FloorTable)
+    private readonly tableRepository: Repository<FloorTable>,
   ) {
     super(tableRepository);
   }

@@ -18,7 +18,6 @@ import { FaqCategoryModule } from './faq-category/faq-category.module';
 import { FloorModule } from './floor/floor.module';
 import { TableModule } from './table/table.module';
 import { RecipeModule } from './recipe/recipe.module';
-import { ItemStockModule } from './item-stock/item-stock.module';
 import { ItemModule } from './item/item.module';
 import { ItemBatchModule } from './item-batch/item-batch.module';
 import { CustomerModule } from './customer/customer.module';
@@ -43,6 +42,15 @@ import { OrderLogModule } from './order-log/order-log.module';
 import { FileModule } from './file/file.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { RecipeItemModule } from './recipe-item/recipe-item.module';
+import { CouponModule } from './coupon/coupon.module';
+import { CouponUsageModule } from './coupon-usage/coupon-usage.module';
+import { FlashSaleModule } from './flash-sale/flash-sale.module';
+import { CampaignModule } from './campaign/campaign.module';
+import { LocationModule } from './location/location.module';
+import { WarehouseModule } from './warehouse/warehouse.module';
+import { StockTransferModule } from './stock-transfer/stock-transfer.module';
+import { AccountModule } from './account/account.module';
+import { EmployeeModule } from './employee/employee.module';
 
 @Module({
   imports: [
@@ -76,13 +84,13 @@ import { RecipeItemModule } from './recipe-item/recipe-item.module';
     FloorModule,
     TableModule,
     RecipeModule,
-    ItemStockModule,
     ItemModule,
     ItemBatchModule,
     CustomerModule,
-    OrderProductModule,
-    FinancialRecordModule,
     OrderModule,
+    OrderProductModule,
+    OrderLogModule,
+    FinancialRecordModule,
     RoleModule,
     AuthorityModule,
     ProductModule,
@@ -96,9 +104,17 @@ import { RecipeItemModule } from './recipe-item/recipe-item.module';
     DiscountModule,
     FeaturedProductModule,
     FactoryActivityModule,
-    OrderLogModule,
     FileModule,
     RecipeItemModule,
+    CouponModule,
+    CouponUsageModule,
+    FlashSaleModule,
+    CampaignModule,
+    LocationModule,
+    WarehouseModule,
+    StockTransferModule,
+    AccountModule,
+    EmployeeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -5,9 +5,15 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { FinanceRecord } from '../../financial-record/entities/financial-record.entity';
 import { CoreEntity } from '../../base/entities/base.entity';
+import { ItemBatch } from '../../item-batch/entities/item-batch.entity';
+import { Location } from '../../location/entities/location.entity';
+import { Warehouse } from '../../warehouse/entities/warehouse.entity';
+import { StockTransfer } from '../../stock-transfer/entities/stock-transfer.entity';
 
 @Entity()
 export class Item extends CoreEntity {
@@ -43,5 +49,17 @@ export class Item extends CoreEntity {
   @OneToMany(() => Item, (item) => item.parentItem)
   childItems: Item[];
 
-  // ... other item properties ...
+  @OneToMany(() => ItemBatch, (batch) => batch.item)
+  batches: ItemBatch[];
+
+  @ManyToMany(() => Location)
+  @JoinTable()
+  locations: Location[];
+
+  @ManyToMany(() => Warehouse)
+  @JoinTable()
+  warehouses: Warehouse[];
+
+  @OneToMany(() => StockTransfer, (transfer) => transfer.item)
+  transfers: StockTransfer[];
 }

@@ -10,7 +10,7 @@ import { Exclude } from 'class-transformer';
 import { StatusEnum } from '../../utils/enums/status.enum';
 import { UserTypeEnum } from '../../utils/enums/user-type.enum';
 import { Role } from '../types';
-import {Organization} from "../../organization/entities/organization.entity";
+import { Organization } from '../../organization/entities/organization.entity';
 
 @Entity()
 export class User {
@@ -70,8 +70,7 @@ export class User {
   // })
   // userType: UserTypeEnum;
 
-
-  @ManyToOne(()=>Organization, org=> org.staff)
+  @ManyToOne(() => Organization, (org) => org.staff)
   organization: Organization;
 
   @Column({

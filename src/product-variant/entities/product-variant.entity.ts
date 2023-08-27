@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { CoreEntity } from '../../base/entities/base.entity';
+import { Product } from '../../product/entities/product.entity';
 
 @Entity()
 export class ProductVariant extends CoreEntity {
@@ -14,4 +15,7 @@ export class ProductVariant extends CoreEntity {
 
   @Column()
   value: string;
+
+  @ManyToOne(() => Product)
+  product: string;
 }

@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { CoreEntity } from '../../base/entities/base.entity';
-import {FloorTable} from '../../table/entities/table.entity';
+import { FloorTable } from '../../table/entities/table.entity';
 
 @Entity()
 export class Floor extends CoreEntity {

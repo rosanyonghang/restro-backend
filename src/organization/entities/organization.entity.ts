@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
 import { CoreEntity } from '../../base/entities/base.entity';
 import { User } from '../../user/entities/user.entity';
+import {Employee} from "../../employee/entities/employee.entity";
 
 @Entity()
 export class Organization extends CoreEntity {
@@ -25,4 +26,7 @@ export class Organization extends CoreEntity {
 
   @OneToMany(() => User, (users) => users.organization)
   staff: User[];
+
+  @OneToMany(() => Employee, (employee) => employee.organization)
+  employees: Employee[];
 }

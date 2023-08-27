@@ -16,8 +16,8 @@ import { OrganizationService } from '../organization/organization.service';
 import { OrganizationModule } from '../organization/organization.module';
 import { OrganizationMiddleware } from './http/response/organization.middleware';
 import { TokenGuard } from './http/token.guard';
-import {ApiKeyService} from "./services/api-key.service";
-import {Organization} from "../organization/entities/organization.entity";
+import { ApiKeyService } from './services/api-key.service';
+import { Organization } from '../organization/entities/organization.entity';
 
 @Module({
   imports: [

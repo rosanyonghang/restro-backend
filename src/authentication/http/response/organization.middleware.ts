@@ -1,8 +1,8 @@
 // product-composite.middleware.ts
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import {ApiKeyService} from "../../services/api-key.service";
-import {TokenGuard} from "../token.guard";
+import { ApiKeyService } from '../../services/api-key.service';
+import { TokenGuard } from '../token.guard';
 
 @Injectable()
 export class OrganizationMiddleware implements NestMiddleware {
