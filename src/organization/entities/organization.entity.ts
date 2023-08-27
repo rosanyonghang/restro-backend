@@ -24,9 +24,9 @@ export class Organization extends CoreEntity {
   @OneToOne(() => User)
   owner: User;
 
-  @OneToMany(() => User, (users) => users.organization)
-  staff: User[];
-
   @OneToMany(() => Employee, (employee) => employee.organization)
   employees: Employee[];
+
+  @OneToMany(() => User, (user) => user.organization)
+  users: User[];
 }

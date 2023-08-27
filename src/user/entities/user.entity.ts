@@ -90,6 +90,10 @@ export class User {
   // })
   // readonly confirmedAt!: Date | null;
 
+
+  @ManyToOne(() => Organization, organization => organization.users)
+  organization: Organization;
+
   @Exclude()
   @CreateDateColumn()
   readonly createdAt: Date;
