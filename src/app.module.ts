@@ -41,6 +41,8 @@ import { DiscountModule } from './discount/discount.module';
 import { FeaturedProductModule } from './featured-product/featured-product.module';
 import { FactoryActivityModule } from './factory-activity/factory-activity.module';
 import { OrderLogModule } from './order-log/order-log.module';
+import { FileModule } from './file/file.module';
+import {NotificationsModule} from "./notifications/notifications.module";
 
 @Module({
   imports: [
@@ -85,6 +87,7 @@ import { OrderLogModule } from './order-log/order-log.module';
     RoleModule,
     AuthorityModule,
     ProductModule,
+    NotificationsModule,
     ProductAssociationModule,
     ProductVariantModule,
     ProductAttributeModule,
@@ -95,6 +98,7 @@ import { OrderLogModule } from './order-log/order-log.module';
     FeaturedProductModule,
     FactoryActivityModule,
     OrderLogModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

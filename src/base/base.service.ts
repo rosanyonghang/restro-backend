@@ -7,7 +7,6 @@ export class BaseService<T extends CoreEntity> implements IBaseService<T> {
   constructor(private readonly genericRepository: Repository<T>) {}
   create(entity: T): Promise<number> {
     try {
-      console.log('inside save');
       return new Promise<number>((resolve, reject) => {
         this.genericRepository
           .save(entity)
