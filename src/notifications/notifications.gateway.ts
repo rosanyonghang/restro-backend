@@ -7,8 +7,11 @@ import {
 } from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
 import { Inject } from '@nestjs/common';
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 
 @WebSocketGateway({ transports: ['websocket'] })
+@ApiBearerAuth()
+@ApiTags('Notification')
 export class NotificationsGateway
   implements OnGatewayConnection, OnGatewayDisconnect
 {
