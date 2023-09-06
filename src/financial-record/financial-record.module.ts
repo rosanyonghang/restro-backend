@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { FinancialRecordService } from './financial-record.service';
 import { FinancialRecordController } from './financial-record.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { FinanceRecord } from './entities/financial-record.entity';
+import { FinancialRecord } from './entities/financial-record.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([FinanceRecord])],
+  imports: [TypeOrmModule.forFeature([FinancialRecord])],
   controllers: [FinancialRecordController],
   providers: [FinancialRecordService],
 })

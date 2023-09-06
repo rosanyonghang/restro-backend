@@ -1,45 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { OrderLogService } from './order-log.service';
-import { CreateOrderLogDto } from './dto/create-order-log.dto';
-import { UpdateOrderLogDto } from './dto/update-order-log.dto';
+import { OrderLog } from './entities/order-log.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('order-log')
-export class OrderLogController {
-  constructor(private readonly orderLogService: OrderLogService) {}
-
-  @Post()
-  create(@Body() createOrderLogDto: CreateOrderLogDto) {
-    return this.orderLogService.create(createOrderLogDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.orderLogService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.orderLogService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateOrderLogDto: UpdateOrderLogDto,
-  ) {
-    return this.orderLogService.update(+id, updateOrderLogDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.orderLogService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('OrderLog')
+export class OrderLogController extends BaseController<OrderLog> {
+  constructor(private readonly orderLogService: OrderLogService) {
+    super(orderLogService);
   }
 }

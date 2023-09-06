@@ -1,6 +1,6 @@
 import { Column, OneToMany, Entity, ManyToOne } from 'typeorm';
 import { CoreEntity } from '../../base/entities/base.entity';
-import { FinanceRecord } from '../../financial-record/entities/financial-record.entity';
+import { FinancialRecord } from '../../financial-record/entities/financial-record.entity';
 import { Organization } from '../../organization/entities/organization.entity';
 
 @Entity()
@@ -17,6 +17,6 @@ export class Employee extends CoreEntity {
   @ManyToOne(() => Organization, (organization) => organization.employees)
   organization: Organization;
 
-  @OneToMany(() => FinanceRecord, (transaction) => transaction.employee)
-  transactions: FinanceRecord[];
+  @OneToMany(() => FinancialRecord, (transaction) => transaction.employee)
+  transactions: FinancialRecord[];
 }

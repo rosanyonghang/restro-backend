@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductAssociationDto } from './dto/create-product-association.dto';
-import { UpdateProductAssociationDto } from './dto/update-product-association.dto';
+import { BaseService } from '../base/base.service';
+import { ProductAssociation } from './entities/product-association.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class ProductAssociationService {
-  create(createProductAssociationDto: CreateProductAssociationDto) {
-    return 'This action adds a new productAssociation';
-  }
-
-  findAll() {
-    return `This action returns all productAssociation`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} productAssociation`;
-  }
-
-  update(id: number, updateProductAssociationDto: UpdateProductAssociationDto) {
-    return `This action updates a #${id} productAssociation`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} productAssociation`;
+export class ProductAssociationService extends BaseService<ProductAssociation> {
+  constructor(
+    @InjectRepository(ProductAssociation)
+    private readonly productAssociationRepository: Repository<ProductAssociation>,
+  ) {
+    super(productAssociationRepository);
   }
 }

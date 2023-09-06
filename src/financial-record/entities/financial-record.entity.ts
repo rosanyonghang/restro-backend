@@ -14,7 +14,7 @@ import { Account } from '../../account/entities/account.entity';
 import { Employee } from '../../employee/entities/employee.entity';
 
 @Entity()
-export class FinanceRecord extends CoreEntity {
+export class FinancialRecord extends CoreEntity {
   @Column()
   description: string;
 

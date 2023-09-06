@@ -9,12 +9,10 @@ import { Warehouse } from '../../warehouse/entities/warehouse.entity';
 import { Product } from '../../product/entities/product.entity';
 import { Location } from '../../location/entities/location.entity';
 import { Item } from '../../item/entities/item.entity';
+import { CoreEntity } from '../../base/entities/base.entity';
 
 @Entity()
-export class StockTransfer {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class StockTransfer extends CoreEntity {
   @ManyToOne(() => Product, (product) => product.transfers)
   product: Product;
 

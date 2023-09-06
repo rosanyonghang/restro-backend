@@ -1,45 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ItemBatchService } from './item-batch.service';
-import { CreateItemBatchDto } from './dto/create-item-batch.dto';
-import { UpdateItemBatchDto } from './dto/update-item-batch.dto';
+import { ItemBatch } from './entities/item-batch.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('item-batch')
-export class ItemBatchController {
-  constructor(private readonly itemBatchService: ItemBatchService) {}
-
-  @Post()
-  create(@Body() createItemBatchDto: CreateItemBatchDto) {
-    return this.itemBatchService.create(createItemBatchDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.itemBatchService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.itemBatchService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateItemBatchDto: UpdateItemBatchDto,
-  ) {
-    return this.itemBatchService.update(+id, updateItemBatchDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.itemBatchService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('ItemBatch')
+export class ItemBatchController extends BaseController<ItemBatch> {
+  constructor(private readonly itemBatchService: ItemBatchService) {
+    super(itemBatchService);
   }
 }

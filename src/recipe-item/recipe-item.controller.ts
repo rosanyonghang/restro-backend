@@ -1,45 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { RecipeItemService } from './recipe-item.service';
-import { CreateRecipeItemDto } from './dto/create-recipe-item.dto';
-import { UpdateRecipeItemDto } from './dto/update-recipe-item.dto';
+import { RecipeItem } from './entities/recipe-item.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('recipe-item')
-export class RecipeItemController {
-  constructor(private readonly recipeItemService: RecipeItemService) {}
-
-  @Post()
-  create(@Body() createRecipeItemDto: CreateRecipeItemDto) {
-    return this.recipeItemService.create(createRecipeItemDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.recipeItemService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.recipeItemService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateRecipeItemDto: UpdateRecipeItemDto,
-  ) {
-    return this.recipeItemService.update(+id, updateRecipeItemDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.recipeItemService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('RecipeItem')
+export class RecipeItemController extends BaseController<RecipeItem> {
+  constructor(private readonly recipeItemService: RecipeItemService) {
+    super(recipeItemService);
   }
 }

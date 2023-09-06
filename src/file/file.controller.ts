@@ -17,8 +17,11 @@ import { TokenGuard } from '../authentication/http/token.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { editFileName, pdfFileFilter } from '../utils/images.utils';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('file')
+@ApiBearerAuth()
+@ApiTags('File')
 export class FileController {
   constructor(private readonly fileService: FileService) {}
 

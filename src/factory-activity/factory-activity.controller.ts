@@ -1,47 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { FactoryActivityService } from './factory-activity.service';
-import { CreateFactoryActivityDto } from './dto/create-factory-activity.dto';
-import { UpdateFactoryActivityDto } from './dto/update-factory-activity.dto';
+import { FactoryActivity } from './entities/factory-activity.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('factory-activity')
-export class FactoryActivityController {
-  constructor(
-    private readonly factoryActivityService: FactoryActivityService,
-  ) {}
-
-  @Post()
-  create(@Body() createFactoryActivityDto: CreateFactoryActivityDto) {
-    return this.factoryActivityService.create(createFactoryActivityDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.factoryActivityService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.factoryActivityService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateFactoryActivityDto: UpdateFactoryActivityDto,
-  ) {
-    return this.factoryActivityService.update(+id, updateFactoryActivityDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.factoryActivityService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('FactoryActivity')
+export class FactoryActivityController extends BaseController<FactoryActivity> {
+  constructor(private readonly factoryActivityService: FactoryActivityService) {
+    super(factoryActivityService);
   }
 }

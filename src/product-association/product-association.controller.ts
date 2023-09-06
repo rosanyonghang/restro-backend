@@ -1,50 +1,16 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ProductAssociationService } from './product-association.service';
-import { CreateProductAssociationDto } from './dto/create-product-association.dto';
-import { UpdateProductAssociationDto } from './dto/update-product-association.dto';
+import { ProductAssociation } from './entities/product-association.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('product-association')
-export class ProductAssociationController {
+@ApiBearerAuth()
+@ApiTags('ProductAssociation')
+export class ProductAssociationController extends BaseController<ProductAssociation> {
   constructor(
     private readonly productAssociationService: ProductAssociationService,
-  ) {}
-
-  @Post()
-  create(@Body() createProductAssociationDto: CreateProductAssociationDto) {
-    return this.productAssociationService.create(createProductAssociationDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.productAssociationService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productAssociationService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateProductAssociationDto: UpdateProductAssociationDto,
   ) {
-    return this.productAssociationService.update(
-      +id,
-      updateProductAssociationDto,
-    );
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productAssociationService.remove(+id);
+    super(productAssociationService);
   }
 }

@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateFlashSaleDto } from './dto/create-flash-sale.dto';
-import { UpdateFlashSaleDto } from './dto/update-flash-sale.dto';
+import { BaseService } from '../base/base.service';
+import { FlashSale } from './entities/flash-sale.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class FlashSaleService {
-  create(createFlashSaleDto: CreateFlashSaleDto) {
-    return 'This action adds a new flashSale';
-  }
-
-  findAll() {
-    return `This action returns all flashSale`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} flashSale`;
-  }
-
-  update(id: number, updateFlashSaleDto: UpdateFlashSaleDto) {
-    return `This action updates a #${id} flashSale`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} flashSale`;
+export class FlashSaleService extends BaseService<FlashSale> {
+  constructor(
+    @InjectRepository(FlashSale)
+    private readonly flashSaleRepository: Repository<FlashSale>,
+  ) {
+    super(flashSaleRepository);
   }
 }
