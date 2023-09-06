@@ -70,8 +70,7 @@ export class User {
   // })
   // userType: UserTypeEnum;
 
-  @ManyToOne(() => Organization, (org) => org.staff)
-  organization: Organization;
+
 
   @Column({
     type: 'enum',
@@ -90,8 +89,7 @@ export class User {
   // })
   // readonly confirmedAt!: Date | null;
 
-
-  @ManyToOne(() => Organization, organization => organization.users)
+  @ManyToOne(() => Organization, (organization) => organization.members)
   organization: Organization;
 
   @Exclude()

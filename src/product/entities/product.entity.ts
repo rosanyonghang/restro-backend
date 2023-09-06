@@ -88,7 +88,8 @@ export class Product extends CoreEntity {
   @ManyToOne(() => Organization)
   owner: string;
 
-  @ManyToOne(() => Category)
+  @ManyToMany(() => Category)
+  @JoinTable()
   Category?: string;
 
   @OneToMany(() => Discount, (disc) => disc.product)

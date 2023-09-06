@@ -24,6 +24,9 @@ export class Item extends CoreEntity {
   name: string;
 
   @Column()
+  description: string;
+
+  @Column()
   initialStock: number;
 
   @Column()
@@ -34,6 +37,11 @@ export class Item extends CoreEntity {
 
   @Column()
   metrics: string;
+
+  @Column({
+    default: false,
+  })
+  isFragile: boolean;
 
   // Define the type of the item: 'food', 'ingredient', 'derived'
   @Column({ type: 'enum', enum: ['food', 'ingredient', 'derived'] })

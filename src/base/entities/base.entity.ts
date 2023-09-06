@@ -18,7 +18,7 @@ export class CoreEntity {
   @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @DeleteDateColumn({ type: 'timestamp'})
   deletedAt: Date;
 
   @ManyToOne(() => User)

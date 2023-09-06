@@ -51,6 +51,7 @@ import { WarehouseModule } from './warehouse/warehouse.module';
 import { StockTransferModule } from './stock-transfer/stock-transfer.module';
 import { AccountModule } from './account/account.module';
 import { EmployeeModule } from './employee/employee.module';
+import { ItemCategoryModule } from './item-category/item-category.module';
 
 @Module({
   imports: [
@@ -115,6 +116,7 @@ import { EmployeeModule } from './employee/employee.module';
     StockTransferModule,
     AccountModule,
     EmployeeModule,
+    ItemCategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

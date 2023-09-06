@@ -27,8 +27,9 @@ export class HealthController {
   check() {
     // return this.health.check([() => this.http.pingCheck('base-OKR', 'http://localhost:3002')]);
     return this.health.check([
-      () => this.mongoDBHealth.pingCheck('database'),
+      // () => this.mongoDBHealth.pingCheck('database'),
       // the process should not use more than 300MB memory
+      () => this.http.pingCheck('base-OKR', 'http://localhost:3002'),
       () =>
         this.memoryHealthIndicator.checkHeap('memory heap', 300 * 1024 * 1024),
       // The process should not have more than 300MB RSS memory allocated

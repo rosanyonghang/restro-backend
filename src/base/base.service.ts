@@ -38,9 +38,13 @@ export class BaseService<T extends CoreEntity> implements IBaseService<T> {
     }
   }
 
-  getAll(): Promise<T[]> {
+  async getAll(): Promise<T[]> {
     try {
-      return this.genericRepository.find();
+      const res= await this.genericRepository
+        .createQueryBuilder('module')
+        .getMany();
+      console.log(res);
+      return res;
     } catch (error) {
       throw new BadGatewayException(error);
     }
