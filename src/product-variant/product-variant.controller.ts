@@ -1,45 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ProductVariantService } from './product-variant.service';
-import { CreateProductVariantDto } from './dto/create-product-variant.dto';
-import { UpdateProductVariantDto } from './dto/update-product-variant.dto';
+import { ProductVariant } from './entities/product-variant.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('product-variant')
-export class ProductVariantController {
-  constructor(private readonly productVariantService: ProductVariantService) {}
-
-  @Post()
-  create(@Body() createProductVariantDto: CreateProductVariantDto) {
-    return this.productVariantService.create(createProductVariantDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.productVariantService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productVariantService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateProductVariantDto: UpdateProductVariantDto,
-  ) {
-    return this.productVariantService.update(+id, updateProductVariantDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productVariantService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('ProductVariant')
+export class ProductVariantController extends BaseController<ProductVariant> {
+  constructor(private readonly productVariantService: ProductVariantService) {
+    super(productVariantService);
   }
 }

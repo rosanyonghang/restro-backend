@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateFeaturedProductDto } from './dto/create-featured-product.dto';
-import { UpdateFeaturedProductDto } from './dto/update-featured-product.dto';
+import { BaseService } from '../base/base.service';
+import { FeaturedProduct } from './entities/featured-product.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class FeaturedProductService {
-  create(createFeaturedProductDto: CreateFeaturedProductDto) {
-    return 'This action adds a new featuredProduct';
-  }
-
-  findAll() {
-    return `This action returns all featuredProduct`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} featuredProduct`;
-  }
-
-  update(id: number, updateFeaturedProductDto: UpdateFeaturedProductDto) {
-    return `This action updates a #${id} featuredProduct`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} featuredProduct`;
+export class FeaturedProductService extends BaseService<FeaturedProduct> {
+  constructor(
+    @InjectRepository(FeaturedProduct)
+    private readonly categoryRepository: Repository<FeaturedProduct>,
+  ) {
+    super(categoryRepository);
   }
 }

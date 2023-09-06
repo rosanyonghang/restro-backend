@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStockTransferDto } from './dto/create-stock-transfer.dto';
-import { UpdateStockTransferDto } from './dto/update-stock-transfer.dto';
+import { BaseService } from '../base/base.service';
+import { StockTransfer } from './entities/stock-transfer.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class StockTransferService {
-  create(createStockTransferDto: CreateStockTransferDto) {
-    return 'This action adds a new stockTransfer';
-  }
-
-  findAll() {
-    return `This action returns all stockTransfer`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} stockTransfer`;
-  }
-
-  update(id: number, updateStockTransferDto: UpdateStockTransferDto) {
-    return `This action updates a #${id} stockTransfer`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} stockTransfer`;
+export class StockTransferService extends BaseService<StockTransfer> {
+  constructor(
+    @InjectRepository(StockTransfer)
+    private readonly stockTransferRepository: Repository<StockTransfer>,
+  ) {
+    super(stockTransferRepository);
   }
 }

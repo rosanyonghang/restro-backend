@@ -8,12 +8,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Faq } from '../../faq/entities/faq.entity';
+import { CoreEntity } from '../../base/entities/base.entity';
 
 @Entity()
-export class FaqCategory {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class FaqCategory extends CoreEntity {
   @Column()
   title: string;
 
@@ -22,19 +20,4 @@ export class FaqCategory {
 
   @OneToMany(() => Faq, (faq) => faq.category)
   faqs: string;
-
-  @Column()
-  createdBy: string;
-
-  @Column()
-  updatedBy: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }

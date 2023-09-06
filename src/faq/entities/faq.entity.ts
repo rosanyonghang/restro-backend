@@ -1,19 +1,9 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { FaqCategory } from '../../faq-category/entities/faq-category.entity';
+import { CoreEntity } from '../../base/entities/base.entity';
 
 @Entity()
-export class Faq {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Faq extends CoreEntity {
   @Column()
   title: string;
 
@@ -22,19 +12,4 @@ export class Faq {
 
   @ManyToOne(() => FaqCategory, (category) => category.faqs)
   category: string;
-
-  @Column()
-  createdBy: string;
-
-  @Column()
-  updatedBy: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }

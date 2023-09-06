@@ -8,7 +8,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { FinanceRecord } from '../../financial-record/entities/financial-record.entity';
+import { FinancialRecord } from '../../financial-record/entities/financial-record.entity';
 import { CoreEntity } from '../../base/entities/base.entity';
 import { ItemBatch } from '../../item-batch/entities/item-batch.entity';
 import { Location } from '../../location/entities/location.entity';
@@ -50,8 +50,8 @@ export class Item extends CoreEntity {
   @Column({ type: 'enum', enum: ['food', 'ingredient', 'derived'] })
   type: 'food' | 'ingredient' | 'derived';
 
-  @OneToMany(() => FinanceRecord, (financeRecord) => financeRecord.item)
-  financeRecords: FinanceRecord[];
+  @OneToMany(() => FinancialRecord, (FinancialRecord) => FinancialRecord.item)
+  FinancialRecords: FinancialRecord[];
 
   // Define relationships for ingredients and derived ingredients
   @ManyToOne(() => Item, { nullable: true })

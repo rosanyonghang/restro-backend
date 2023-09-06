@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductVariantDto } from './dto/create-product-variant.dto';
-import { UpdateProductVariantDto } from './dto/update-product-variant.dto';
+import { BaseService } from '../base/base.service';
+import { ProductVariant } from './entities/product-variant.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class ProductVariantService {
-  create(createProductVariantDto: CreateProductVariantDto) {
-    return 'This action adds a new productVariant';
-  }
-
-  findAll() {
-    return `This action returns all productVariant`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} productVariant`;
-  }
-
-  update(id: number, updateProductVariantDto: UpdateProductVariantDto) {
-    return `This action updates a #${id} productVariant`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} productVariant`;
+export class ProductVariantService extends BaseService<ProductVariant> {
+  constructor(
+    @InjectRepository(ProductVariant)
+    private readonly productVariantRepository: Repository<ProductVariant>,
+  ) {
+    super(productVariantRepository);
   }
 }

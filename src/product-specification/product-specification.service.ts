@@ -1,29 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductSpecificationDto } from './dto/create-product-specification.dto';
-import { UpdateProductSpecificationDto } from './dto/update-product-specification.dto';
+import { BaseService } from '../base/base.service';
+import { ProductSpecification } from './entities/product-specification.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class ProductSpecificationService {
-  create(createProductSpecificationDto: CreateProductSpecificationDto) {
-    return 'This action adds a new productSpecification';
-  }
-
-  findAll() {
-    return `This action returns all productSpecification`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} productSpecification`;
-  }
-
-  update(
-    id: number,
-    updateProductSpecificationDto: UpdateProductSpecificationDto,
+export class ProductSpecificationService extends BaseService<ProductSpecification> {
+  constructor(
+    @InjectRepository(ProductSpecification)
+    private readonly productSpecificationRepository: Repository<ProductSpecification>,
   ) {
-    return `This action updates a #${id} productSpecification`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} productSpecification`;
+    super(productSpecificationRepository);
   }
 }

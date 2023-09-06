@@ -1,45 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { FlashSaleService } from './flash-sale.service';
-import { CreateFlashSaleDto } from './dto/create-flash-sale.dto';
-import { UpdateFlashSaleDto } from './dto/update-flash-sale.dto';
+import { FlashSale } from './entities/flash-sale.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('flash-sale')
-export class FlashSaleController {
-  constructor(private readonly flashSaleService: FlashSaleService) {}
-
-  @Post()
-  create(@Body() createFlashSaleDto: CreateFlashSaleDto) {
-    return this.flashSaleService.create(createFlashSaleDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.flashSaleService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.flashSaleService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateFlashSaleDto: UpdateFlashSaleDto,
-  ) {
-    return this.flashSaleService.update(+id, updateFlashSaleDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.flashSaleService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('FlashSale')
+export class FlashSaleController extends BaseController<FlashSale> {
+  constructor(private readonly flashSaleService: FlashSaleService) {
+    super(flashSaleService);
   }
 }
