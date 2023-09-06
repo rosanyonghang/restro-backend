@@ -33,6 +33,9 @@ export class Item extends CoreEntity {
   sku: number;
 
   @Column()
+  qte: number;
+
+  @Column()
   itemImage: string;
 
   @Column()

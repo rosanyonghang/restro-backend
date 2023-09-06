@@ -1,42 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { CouponService } from './coupon.service';
-import { CreateCouponDto } from './dto/create-coupon.dto';
-import { UpdateCouponDto } from './dto/update-coupon.dto';
+import { Coupon } from './entities/coupon.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('coupon')
-export class CouponController {
-  constructor(private readonly couponService: CouponService) {}
-
-  @Post()
-  create(@Body() createCouponDto: CreateCouponDto) {
-    return this.couponService.create(createCouponDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.couponService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.couponService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCouponDto: UpdateCouponDto) {
-    return this.couponService.update(+id, updateCouponDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.couponService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('Coupon')
+export class CouponController extends BaseController<Coupon> {
+  constructor(private readonly couponService: CouponService) {
+    super(couponService);
   }
 }

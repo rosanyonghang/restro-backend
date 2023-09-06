@@ -1,45 +1,14 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { DefaultSettingService } from './default-setting.service';
-import { CreateDefaultSettingDto } from './dto/create-default-setting.dto';
-import { UpdateDefaultSettingDto } from './dto/update-default-setting.dto';
+import { DefaultSetting } from './entities/default-setting.entity';
+import { BaseController } from '../base/base.controller';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('default-setting')
-export class DefaultSettingController {
-  constructor(private readonly defaultSettingService: DefaultSettingService) {}
-
-  @Post()
-  create(@Body() createDefaultSettingDto: CreateDefaultSettingDto) {
-    return this.defaultSettingService.create(createDefaultSettingDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.defaultSettingService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.defaultSettingService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateDefaultSettingDto: UpdateDefaultSettingDto,
-  ) {
-    return this.defaultSettingService.update(+id, updateDefaultSettingDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.defaultSettingService.remove(+id);
+@ApiBearerAuth()
+@ApiTags('DefaultSetting')
+export class DefaultSettingController extends BaseController<DefaultSetting> {
+  constructor(private readonly defaultSettingService: DefaultSettingService) {
+    super(defaultSettingService);
   }
 }

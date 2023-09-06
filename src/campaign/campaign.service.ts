@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCampaignDto } from './dto/create-campaign.dto';
-import { UpdateCampaignDto } from './dto/update-campaign.dto';
+import { BaseService } from '../base/base.service';
+import { Campaign } from './entities/campaign.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class CampaignService {
-  create(createCampaignDto: CreateCampaignDto) {
-    return 'This action adds a new campaign';
-  }
-
-  findAll() {
-    return `This action returns all campaign`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} campaign`;
-  }
-
-  update(id: number, updateCampaignDto: UpdateCampaignDto) {
-    return `This action updates a #${id} campaign`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} campaign`;
+export class CampaignService extends BaseService<Campaign> {
+  constructor(
+    @InjectRepository(Campaign)
+    private readonly campaignRepository: Repository<Campaign>,
+  ) {
+    super(campaignRepository);
   }
 }

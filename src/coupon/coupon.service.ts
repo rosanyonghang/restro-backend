@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCouponDto } from './dto/create-coupon.dto';
-import { UpdateCouponDto } from './dto/update-coupon.dto';
+import { BaseService } from '../base/base.service';
+import { Coupon } from './entities/coupon.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class CouponService {
-  create(createCouponDto: CreateCouponDto) {
-    return 'This action adds a new coupon';
-  }
-
-  findAll() {
-    return `This action returns all coupon`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} coupon`;
-  }
-
-  update(id: number, updateCouponDto: UpdateCouponDto) {
-    return `This action updates a #${id} coupon`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} coupon`;
+export class CouponService extends BaseService<Coupon> {
+  constructor(
+    @InjectRepository(Coupon)
+    private readonly couponRepository: Repository<Coupon>,
+  ) {
+    super(couponRepository);
   }
 }

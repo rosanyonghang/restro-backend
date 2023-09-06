@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateUserExceptionFilter } from '../exception-filters/create-user.exception-filter';
-import { ApiBasicAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { TokenGuard } from '../../../authentication/http/token.guard';
 import { Role } from '../../types';
 import { DuplicateUserExceptionFilter } from '../exception-filters/duplicate-user.exception-filter';
@@ -27,7 +27,7 @@ import { UserService } from '../services/user.service';
 
 @Controller()
 @ApiTags('User')
-@ApiBasicAuth()
+@ApiBearerAuth()
 export class UserController {
   constructor(
     @InjectRepository(User)

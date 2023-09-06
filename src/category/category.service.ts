@@ -12,8 +12,4 @@ export class CategoryService extends BaseService<Category> {
   ) {
     super(categoryRepository);
   }
-
-  getAllCategories() {
-    return this.categoryRepository.find();
-  }
 }

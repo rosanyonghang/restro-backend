@@ -70,8 +70,6 @@ export class User {
   // })
   // userType: UserTypeEnum;
 
-
-
   @Column({
     type: 'enum',
     enum: Role,

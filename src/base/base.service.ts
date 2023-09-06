@@ -40,7 +40,7 @@ export class BaseService<T extends CoreEntity> implements IBaseService<T> {
 
   async getAll(): Promise<T[]> {
     try {
-      const res= await this.genericRepository
+      const res = await this.genericRepository
         .createQueryBuilder('module')
         .getMany();
       console.log(res);

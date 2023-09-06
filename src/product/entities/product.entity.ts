@@ -49,6 +49,11 @@ export class Product extends CoreEntity {
   @Column({
     default: 0,
   })
+  sku?: number;
+
+  @Column({
+    default: 0,
+  })
   sold?: number;
 
   @Column({})
@@ -60,10 +65,14 @@ export class Product extends CoreEntity {
   })
   status?: number;
 
-  @Column({})
+  @Column({
+    default: false,
+  })
   shipping?: boolean;
 
-  @Column({})
+  @Column({
+    default: false,
+  })
   collect?: boolean;
 
   @Column({})
