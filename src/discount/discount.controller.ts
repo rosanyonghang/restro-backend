@@ -8,7 +8,12 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 @ApiBearerAuth()
 @ApiTags('Discount')
 export class DiscountController extends BaseController<Discount> {
+<<<<<<< HEAD
+  constructor(private readonly discountService: DiscountService) {
+    super(discountService);
+=======
   constructor(private readonly categoryService: DiscountService) {
     super(categoryService);
+>>>>>>> 08cae6009e5942c2b732aaec9491e5adea4ef25b
   }
 }
