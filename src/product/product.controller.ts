@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import {Body, Controller, Get, Post} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './entities/product.entity';
 import { BaseController } from '../base/base.controller';
@@ -11,4 +11,10 @@ export class ProductController extends BaseController<Product> {
   constructor(private readonly productService: ProductService) {
     super(productService);
   }
+
+  @Post('create')
+  createProduct(@Body() product: any){
+      console.log(product)
+  }
+
 }

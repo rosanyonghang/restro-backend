@@ -1,7 +1,6 @@
 // src/item/item.entity.ts
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
   ManyToOne,
   OneToMany,
@@ -17,17 +16,11 @@ import { StockTransfer } from '../../stock-transfer/entities/stock-transfer.enti
 
 @Entity()
 export class Item extends CoreEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
   @Column()
   name: string;
 
   @Column()
   description: string;
-
-  @Column()
-  initialStock: number;
 
   @Column()
   sku: number;
